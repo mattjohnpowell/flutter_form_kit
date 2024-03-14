@@ -7,6 +7,7 @@ enum AnswerType {
   phoneNumber,
   longText,
   yesNo,
+  shortNumber,
 }
 
 enum ImageLayout {

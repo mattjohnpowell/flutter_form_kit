@@ -7,6 +7,7 @@ import 'package:flutter_form_kit/src/widgets/form_type_widgets/long_text.dart';
 import 'package:flutter_form_kit/src/widgets/form_type_widgets/multiple_choice.dart';
 import 'package:flutter_form_kit/src/widgets/form_type_widgets/phone_number.dart';
 import 'package:flutter_form_kit/src/widgets/form_type_widgets/short_text.dart';
+import 'package:flutter_form_kit/src/widgets/form_type_widgets/short_number.dart';
 
 import 'flutter_form_details.dart';
 
@@ -37,6 +38,16 @@ class _AnswerWidgetState extends State<AnswerWidget> {
               FlutterFormDetails.of(context).onPageSubmitted(widget.index);
             },
             controller: page.controller);
+      case AnswerType.shortNumber:
+        return ShortNumber(
+          onChanged: (value) {
+            FlutterFormDetails.of(context).onPageChanged(widget.index, value);
+          },
+          onSubmitted: (value) {
+            FlutterFormDetails.of(context).onPageSubmitted(widget.index);
+          },
+          controller: page.controller,
+        );
       case AnswerType.multipleChoice:
         return MultipleChoice(
             page: page,
