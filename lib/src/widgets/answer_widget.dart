@@ -86,6 +86,13 @@ class _AnswerWidgetState extends State<AnswerWidget> {
                 fields;
           },
         );
+      case AnswerType.shortContactInfo:
+        return ContactInfo(
+          fields: (fields) {
+            FlutterFormDetails.of(context).pages[widget.index].formField =
+                fields;
+          },
+        );
       case AnswerType.address:
         return Address(
           fields: (fields) {

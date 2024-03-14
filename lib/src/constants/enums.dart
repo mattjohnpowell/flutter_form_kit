@@ -3,6 +3,7 @@ enum AnswerType {
   multipleChoice,
   singleChoice,
   contactInfo,
+  shortContactInfo,
   address,
   phoneNumber,
   longText,
