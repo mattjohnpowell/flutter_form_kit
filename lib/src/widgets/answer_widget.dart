@@ -6,6 +6,7 @@ import 'package:flutter_form_kit/src/widgets/form_type_widgets/contact_info.dart
 import 'package:flutter_form_kit/src/widgets/form_type_widgets/long_text.dart';
 import 'package:flutter_form_kit/src/widgets/form_type_widgets/multiple_choice.dart';
 import 'package:flutter_form_kit/src/widgets/form_type_widgets/phone_number.dart';
+import 'package:flutter_form_kit/src/widgets/form_type_widgets/short_contact_info.dart';
 import 'package:flutter_form_kit/src/widgets/form_type_widgets/short_text.dart';
 import 'package:flutter_form_kit/src/widgets/form_type_widgets/short_number.dart';
 
@@ -87,7 +88,7 @@ class _AnswerWidgetState extends State<AnswerWidget> {
           },
         );
       case AnswerType.shortContactInfo:
-        return ContactInfo(
+        return ShortContactInfo(
           fields: (fields) {
             FlutterFormDetails.of(context).pages[widget.index].formField =
                 fields;
