@@ -16,6 +16,37 @@ An Open Source alternative of Typeform for building beautiful forms with customi
 
 [![Demo Video](https://img.youtube.com/vi/4e663NoHtvg/0.jpg)](https://www.youtube.com/watch?v=4e663NoHtvg)
 
+# Flutter Form Kit
+
+Flutter Form Kit is an open-source alternative to Typeform, built using Flutter. It provides a variety of form layouts to collect user input in a more interactive and engaging way.
+
+## Features
+
+- **Variety of Layouts**: The package includes layouts for short text, multiple choice, contact info, address, phone number, long text, and yes/no options. This variety allows you to create forms that are tailored to your specific needs.
+
+- **Web Support**: The package is web-ready, allowing you to use the same codebase for both your mobile and web applications.
+
+- **Image Layouts**: You can include images in your forms, making them more visually appealing and engaging.
+
+- **Theme Customization**: The package supports theme customization, allowing you to match the forms to your app's look and feel.
+
+## Upcoming Features
+
+- **Validations**: We're working on adding form validation to ensure that the input received is as expected.
+
+- **More Answer Layouts**: We plan to add more answer layouts to give you even more options for your forms.
+
+- **Mobile Support**: We're working on optimizing the package for mobile platforms.
+
+## Usage
+
+To use the Flutter Form Kit, you need to add it as a dependency in your `pubspec.yaml` file:
+
+```yaml
+dependencies:
+  flutter_form_kit: ^0.0.6
+
+
 ## Simple integration:
 Adding the form is quite easy, check out the example project to learn more.
 ![Code](https://raw.githubusercontent.com/YashMakan/flutter_form_kit/main/images/code.png)
