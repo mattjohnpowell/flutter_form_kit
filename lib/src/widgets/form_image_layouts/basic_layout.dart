@@ -46,7 +46,7 @@ class BasicLayout extends StatelessWidget {
             padding: const EdgeInsets.only(left: 32),
             child: (page.description != null)
                 ? Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                    padding: const EdgeInsets.only(top: 2.0),
                     child: Text(
                       page.description!,
                       style: textTheme.titleMedium?.copyWith(fontSize: 18),

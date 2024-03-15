@@ -3,27 +3,42 @@ import 'package:flutter_form_kit/src/widgets/flutter_form_details.dart';
 
 class ShortContactInfo extends StatefulWidget {
   final Function(List<String>) fields;
+  final List<String>? initialData; // Add this line to accept initial data
 
-  const ShortContactInfo({super.key, required this.fields});
+  const ShortContactInfo({
+    Key? key,
+    required this.fields,
+    this.initialData, // Include initialData in the constructor
+  }) : super(key: key);
 
   @override
   State<ShortContactInfo> createState() => _ShortContactInfoState();
 }
 
 class _ShortContactInfoState extends State<ShortContactInfo> {
-  final TextEditingController controller1 = TextEditingController();
-  final TextEditingController controller4 =
-      TextEditingController(); // Assuming this is the email controller
-  final TextEditingController controllerBirthday = TextEditingController();
-  final TextEditingController controllerHeight = TextEditingController();
-
+  late final TextEditingController controllerName;
+  late final TextEditingController controllerEmail;
+  late final TextEditingController controllerBirthday;
+  late final TextEditingController controllerHeight;
   // Use ValueNotifier to manage the validation state of the email
   ValueNotifier<bool> isValidEmail = ValueNotifier(true);
 
   @override
+  void initState() {
+    super.initState();
+    // Initialize controllers with initial data if provided, else with empty strings
+    controllerName = TextEditingController(text: widget.initialData?[0] ?? "");
+    controllerEmail = TextEditingController(text: widget.initialData?[1] ?? "");
+    controllerBirthday =
+        TextEditingController(text: widget.initialData?[2] ?? "");
+    controllerHeight =
+        TextEditingController(text: widget.initialData?[3] ?? "");
+  }
+
+  @override
   void dispose() {
-    controller1.dispose();
-    controller4.dispose();
+    controllerName.dispose();
+    controllerEmail.dispose();
     controllerBirthday.dispose();
     controllerHeight.dispose();
     isValidEmail.dispose();
@@ -34,8 +49,9 @@ class _ShortContactInfoState extends State<ShortContactInfo> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        contactInfoTextField("First name", "Jane", context, controller1),
-        contactInfoTextField("Email", "name@example.com", context, controller4,
+        contactInfoTextField("First name", "Jane", context, controllerName),
+        contactInfoTextField(
+            "Email", "name@example.com", context, controllerEmail,
             isEmail: true),
         GestureDetector(
           onTap: () => _selectDate(context),
@@ -85,8 +101,8 @@ class _ShortContactInfoState extends State<ShortContactInfo> {
               }
               // Update fields for the ShortContactInfo widget
               widget.fields([
-                controller1.text,
-                controller4.text,
+                controllerName.text,
+                controllerEmail.text,
                 // Include new controllers' values
                 controllerBirthday.text,
                 controllerHeight.text,

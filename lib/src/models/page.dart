@@ -8,6 +8,8 @@ class FlutterFormPage {
   final String? image;
   final AnswerType answerType;
   final ImageLayout? imageLayout;
+  String? initialData;
+
   /// The options for the form page.
   /// Example:
   /// {
@@ -27,6 +29,7 @@ class FlutterFormPage {
     this.imageLayout,
     required this.answerType,
     this.options,
+    this.initialData,
   });
 
   Map<String, dynamic> toJson() {
@@ -46,6 +49,11 @@ class FlutterFormPage {
     if (imageLayout != null) {
       json['imageLayout'] =
           imageLayout.toString(); // Assuming ImageLayout is an enum
+    }
+
+    // Additional logic as needed to include initialData and options in JSON.
+    if (initialData != null) {
+      json['initialData'] = initialData;
     }
 
     if (options != null) {
