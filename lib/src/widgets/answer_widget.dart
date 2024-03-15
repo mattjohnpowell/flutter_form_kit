@@ -27,6 +27,12 @@ class _AnswerWidgetState extends State<AnswerWidget> {
     return getAnswerWidget();
   }
 
+  void _handleFieldUpdate(List<String> updatedFields) {
+    // Implement your logic to handle the updated fields
+    // For example, you might update the form model or state here
+    print("Updated fields: $updatedFields");
+  }
+
   getAnswerWidget() {
     final page = FlutterFormDetails.of(context).pages[widget.index];
     switch (page.answerType) {
@@ -89,10 +95,8 @@ class _AnswerWidgetState extends State<AnswerWidget> {
         );
       case AnswerType.shortContactInfo:
         return ShortContactInfo(
-          fields: (fields) {
-            FlutterFormDetails.of(context).pages[widget.index].formField =
-                fields;
-          },
+          onUpdateFields: _handleFieldUpdate, // This line is added
+          initialDataMap: {/* Optionally, pass initial data here */},
         );
       case AnswerType.address:
         return Address(

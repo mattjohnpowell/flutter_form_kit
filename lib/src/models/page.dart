@@ -8,17 +8,9 @@ class FlutterFormPage {
   final String? image;
   final AnswerType answerType;
   final ImageLayout? imageLayout;
-  String? initialData;
-
-  /// The options for the form page.
-  /// Example:
-  /// {
-  ///   "label": "Red",
-  ///   "value": "red",
-  ///   "image": "https://images.unsplash.com/photo-15795469" // Optional
-  /// }
+  Map<String, String>? initialDataMap;
+  TextEditingController controller;
   List<ChoiceOption>? options;
-  TextEditingController controller = TextEditingController();
   List<ChoiceOption> selectedOptions = [];
   List<String> formField = [];
 
@@ -29,8 +21,18 @@ class FlutterFormPage {
     this.imageLayout,
     required this.answerType,
     this.options,
-    this.initialData,
-  });
+    this.initialDataMap, // Initial data map for form fields
+  }) : controller = TextEditingController(text: initialDataMap?["default"] ?? "") { // Use a default key or specific field identifier
+    // Initialize other properties or controllers if necessary
+  }
+
+  // Method to update initial data (for editing purposes)
+  void updateInitialData(Map<String, String> newDataMap) {
+    initialDataMap = newDataMap;
+    // Update the controller with new initial data. Use appropriate key as needed.
+    controller.text = initialDataMap?["default"] ?? "";
+    // Update other fields or controllers if necessary
+  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> json = {
@@ -52,9 +54,11 @@ class FlutterFormPage {
     }
 
     // Additional logic as needed to include initialData and options in JSON.
-    if (initialData != null) {
-      json['initialData'] = initialData;
+    // You might need to convert initialDataMap to a list of strings or other format
+    if (initialDataMap != null) {
+      json['initialDataMap'] = initialDataMap;
     }
+    
 
     if (options != null) {
       json['options'] = options;

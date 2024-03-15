@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_kit/src/widgets/flutter_form_details.dart';
 
 class ShortContactInfo extends StatefulWidget {
-  final Function(List<String>) fields;
-  final List<String>? initialData; // Add this line to accept initial data
+  final Function(List<String>) onUpdateFields;
+  final Map<String, String>?
+      initialDataMap; // Use a map to specify initial data for each field
 
   const ShortContactInfo({
     Key? key,
-    required this.fields,
-    this.initialData, // Include initialData in the constructor
+    required this.onUpdateFields,
+    this.initialDataMap,
   }) : super(key: key);
 
   @override
@@ -20,19 +21,20 @@ class _ShortContactInfoState extends State<ShortContactInfo> {
   late final TextEditingController controllerEmail;
   late final TextEditingController controllerBirthday;
   late final TextEditingController controllerHeight;
-  // Use ValueNotifier to manage the validation state of the email
+  // Declare isValidEmail as a ValueNotifier
   ValueNotifier<bool> isValidEmail = ValueNotifier(true);
-
   @override
   void initState() {
     super.initState();
-    // Initialize controllers with initial data if provided, else with empty strings
-    controllerName = TextEditingController(text: widget.initialData?[0] ?? "");
-    controllerEmail = TextEditingController(text: widget.initialData?[1] ?? "");
+    // Initialize controllers with data from initialDataMap
+    controllerName =
+        TextEditingController(text: widget.initialDataMap?["name"] ?? "");
+    controllerEmail =
+        TextEditingController(text: widget.initialDataMap?["email"] ?? "");
     controllerBirthday =
-        TextEditingController(text: widget.initialData?[2] ?? "");
+        TextEditingController(text: widget.initialDataMap?["birthday"] ?? "");
     controllerHeight =
-        TextEditingController(text: widget.initialData?[3] ?? "");
+        TextEditingController(text: widget.initialDataMap?["height"] ?? "");
   }
 
   @override
@@ -41,7 +43,6 @@ class _ShortContactInfoState extends State<ShortContactInfo> {
     controllerEmail.dispose();
     controllerBirthday.dispose();
     controllerHeight.dispose();
-    isValidEmail.dispose();
     super.dispose();
   }
 
@@ -100,10 +101,10 @@ class _ShortContactInfoState extends State<ShortContactInfo> {
                 isValidEmail.value = _validateEmail(value);
               }
               // Update fields for the ShortContactInfo widget
-              widget.fields([
+// Invoke onUpdateFields callback with updated field values
+              widget.onUpdateFields([
                 controllerName.text,
                 controllerEmail.text,
-                // Include new controllers' values
                 controllerBirthday.text,
                 controllerHeight.text,
               ]);

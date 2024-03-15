@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'page.dart'; // Make sure this import points to where FlutterFormPage is defined.
+
+import 'page.dart';
 
 class FlutterFormData {
   final String name;
@@ -22,17 +23,15 @@ class FlutterFormData {
     this.showLogo = true,
     required this.onPageEdited,
     required this.onFormSubmitted,
-    Map<String, String>? initialData, // Ensure this is included in the parameter list.
+    Map<String, String>? initialData,
   }) {
+    // Propagate initial data to each page
     if (initialData != null) {
       for (var page in pages) {
-        // Ensure FlutterFormPage is designed to accept and use initialData.
-        if (initialData.containsKey(page.heading)) {
-          page.initialData = initialData[page.heading];
-        }
+        Map<String, String> pageInitialData = {}; // Explicitly declare the type
+        // Assuming you populate pageInitialData based on some logic
+        page.updateInitialData(pageInitialData);
       }
     }
   }
 }
-
-// Ensure the FlutterFormPage class is designed to handle initialData. This might involve adding an initialData property to the class and adjusting its widgets to use this data.
